@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Notes</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Book Notes</h2>
+        <p style="font-weight: bolder;">What Are You Waiting For:</p>
+        <ul class="book-list">
+            <% books.forEach(book => { %>
+                <li class="book-item">
+                    <div class="book-details">
+                        <img src="/covers/<%= book.isbn %>" alt="Book Cover">
+                        <div>
+                            <h3><%= book.title %></h3>
+                            <p>Author: <%= book.author %></p>
+                            <p>Rating: <%= book.rating %></p>
+                            <p>Date Read: <%= book.date_read %></p>
+                        </div>
+                    </div>
+                    <form action="/books/<%= book.id %>?_method=DELETE" method="POST">
+                        <button>Delete</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+
+        <!-- Search Form -->
+        <h2>Search Books</h2>
+        <form action="/search" method="GET">
+            <input type="text" name="query" id="searchInput" placeholder="Search by title or author">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+</html>
